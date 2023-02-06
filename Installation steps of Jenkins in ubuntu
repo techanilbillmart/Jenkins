@@ -1,0 +1,38 @@
+Step 1:- Go to link - https://www.jenkins.io/doc/book/installing/linux/#debianubuntu 
+
+Step 2:- Installation of Java 
+  $ sudo apt-get update 
+  $ sudo apt install oepnjdk-11-jre 
+  $ sudo java –version 
+
+Step 3:-  Run this command. 
+  curl -fsSL https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo tee \ 
+    /usr/share/keyrings/jenkins-keyring.asc > /dev/null 
+  echo deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] \ 
+    https://pkg.jenkins.io/debian-stable binary/ | sudo tee \ 
+    /etc/apt/sources.list.d/jenkins.list > /dev/null 
+  sudo apt-get update 
+  sudo apt-get install jenkins 
+
+Step 4:- Start Jenkins 
+  You can enable the Jenkins service to start at boot with the command: 
+    $ sudo systemctl enable jenkins 
+  You can start the Jenkins service with the command: 
+    $ sudo systemctl start jenkins 
+  You can check the status of the Jenkins service using the command: 
+    $ sudo systemctl status jenkins 
+  You can stop the Jenkins service with the command: 
+    $ sudo systemctl stop jenkins 
+  You can restart the Jenkins service with the command: 
+    $ sudo systemctl restart jenkins 
+  
+Step 5:- Browse to http://localhost:8080 
+  Type in terminal  "cat /var/lib/jenkins/secrets/initialAdminPassword " to get password  
+  Install suggested plugins 
+
+Step 6:- Now, we have to give sudo access to jenkins user 
+  Type $ "sudo visudo " it will take to /etc/sudoers path to add jenkins user 
+  Add "jenkins ALL=(ALL) NOPASSWD: ALL" after "root ALL=(ALL:ALL) ALL" 
+
+Step 7:- Add jenkins user to sudo group 
+  sudo su - usermod -a -G sudo jenkins  
